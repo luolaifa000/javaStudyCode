@@ -130,68 +130,13 @@ public class SkipList {
 		count++;
 
 
-		/*Random r = new Random();
-		
-		while (r.nextDouble() < 0.5) {
-
-			while (pNode.up != null) {
-				pNode = pNode.up;
-				linshi = new SkipNode(val);
-				pNode.right.left = linshi;
-				linshi.right = pNode.right;
-				linshi.left = pNode;
-				pNode.right = linshi;
-				count++;
-				break;
-			}
-			
-			SkipNode topNew = new SkipNode("-*");
-			SkipNode tailNew = new SkipNode("+*");
-			top.up = topNew;
-			topNew.down = top;
-			
-			tail.up = tailNew;
-			tailNew.down = tail;
-			
-			top = topNew;
-			tail = tailNew;
-			
-			SkipNode temp2 = new SkipNode(val);
-
-			top.right = temp2;
-			temp2.left = top;
-			tail.left = temp2;
-			temp2.right = tail;
-
-			pNode = temp2;
-			level++;
-			count++;
-			
-		}*/
-		return null;
-	}
-	
-	
-	public SkipNode put1(int val)
-	{
-		//找到最底层要插入节点的前一个节点
-		SkipNode pNode = this.findNode(val);
-		
-		SkipNode temp = new SkipNode(val);
-		
-		SkipNode linshi = null;
-
-		pNode.right.left = temp;
-		
-		temp.right = pNode.right;
-		temp.left = pNode;
-		pNode.right = temp;
-		count++;
-
-
 		Random r = new Random();
 		
 		while (r.nextDouble() < 0.5) {
+		
+			while (pNode.up == null && pNode.left != null) {
+				pNode = pNode.left;
+			}
 
 			while (pNode.up != null) {
 				pNode = pNode.up;
@@ -229,6 +174,9 @@ public class SkipList {
 		}
 		return null;
 	}
+	
+	
+	
 	
 	public void printLink()
 	{
